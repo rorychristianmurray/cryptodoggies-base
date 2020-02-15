@@ -21,6 +21,9 @@ contract CryptoDoggies {
 
     Doggy[] doggies;
 
+    mapping (uint 256 => address) private doggyIdToOwner
+    mapping (address => uint256) private numOfDoggies;
+
     Doggy doggy1 = Doggy({
         age: age,
         name: name,
@@ -40,7 +43,9 @@ contract CryptoDoggies {
             name: _name,
             dna: _dna
         })
-
+        uint256 newDoggyId = doggies.push(_doggy) - 1;
+        doggyIdToOwner[newDoggyId] = msg.sender;
+        numOfDoggies[msg.sender] = numOfDoggies[msg.sender] + 1;
     }
 
 }
