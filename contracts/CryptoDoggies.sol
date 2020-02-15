@@ -4,11 +4,11 @@ contract CryptoDoggies {
     uint age = 10;
     uint maxAge = age * 5;
     uint minAge = age - 5;
+    uint ultraAge = age ** 2;
     uint modAge = age % 2;
 
     string name = 'Rory';
     string name2 = 'Amy';
-
 
     struct Doggy {
         uint age;
@@ -18,6 +18,7 @@ contract CryptoDoggies {
 
     Doggy[] doggies;
 
+    // understand this mapping better
     mapping (uint256 => address) private doggyIdToOwner;
     mapping (address => uint256) private numOfDoggies;
 
