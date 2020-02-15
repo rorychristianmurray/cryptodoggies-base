@@ -24,6 +24,8 @@ contract CryptoDoggies {
     mapping (uint 256 => address) private doggyIdToOwner
     mapping (address => uint256) private numOfDoggies;
 
+    event DoggyCreated(uint256 _id, string _name, uint _age, bytes5 _dna);
+
     Doggy doggy1 = Doggy({
         age: age,
         name: name,
@@ -37,7 +39,10 @@ contract CryptoDoggies {
         dna: bytes5(0xfffffffff)
     })
 
-    function _createDoggy(uint _age, string _name, bytes5 _dna) private {
+    // if function is public, can be called by anyone
+    // passing in the proper arguments
+
+    function _createDoggy(uint _age, string _name, bytes5 _dna) public {
         Doggy memory _doggy = Doggy({
             age: _age,
             name: _name,
@@ -46,6 +51,11 @@ contract CryptoDoggies {
         uint256 newDoggyId = doggies.push(_doggy) - 1;
         doggyIdToOwner[newDoggyId] = msg.sender;
         numOfDoggies[msg.sender] = numOfDoggies[msg.sender] + 1;
+
+        DoggyCreated(newDoggyId, _name, _age, _dna)
+
+
+
     }
 
 }
