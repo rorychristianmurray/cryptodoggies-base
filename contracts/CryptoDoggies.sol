@@ -19,6 +19,8 @@ contract CryptoDoggies {
         bytes5 dna;
     }
 
+    Doggy[] doggies;
+
     Doggy doggy1 = Doggy({
         age: age,
         name: name,
@@ -27,9 +29,18 @@ contract CryptoDoggies {
     
 
     Doggy doggy1 = Doggy({
-        age: m,
-        name: name,
-        dna: bytes5(0x000000000)
+        age: maxAge,
+        name: name2,
+        dna: bytes5(0xfffffffff)
     })
+
+    function _createDoggy(uint _age, string _name, bytes5 _dna) private {
+        Doggy memory _doggy = Doggy({
+            age: _age,
+            name: _name,
+            dna: _dna
+        })
+
+    }
 
 }
